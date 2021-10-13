@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useEffect, useState } from 'react';
+import ComA from './ComA';
 
-function App() {
+const FirstName = createContext();
+const LastName = createContext();
+
+const App = () => {
+  const [num, setNum] = useState(0);
+  const [num2, setNum2] = useState(0);
+
+  useEffect(() => {
+    document.title = `u clicked me ${num} times`
+  }, [num])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <button onClick={() => {
+      setNum(num+1);
+  }}> Click me {num} </button>
+  <button onClick={() => {
+      setNum2(num2+1);
+  }}> Click me {num2} </button>
+  {/* <FirstName.Provider value={"Sahil"}>
+    <LastName.Provider value={"Garg"}>
+    <ComA />
+    </LastName.Provider>
+  </FirstName.Provider> */}
+  </>
   );
-}
-
+};
 export default App;
+export { FirstName, LastName };
